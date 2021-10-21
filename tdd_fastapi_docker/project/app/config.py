@@ -1,11 +1,13 @@
 import logging
 import os
 from enum import Enum, IntEnum
+from functools import lru_cache
 
 from pydantic import BaseSettings
 
 
 log = logging.getLogger("uvicorn")
+
 
 class LogLevel(IntEnum):
     off = 0
@@ -34,6 +36,7 @@ class Settings(BaseSettings):
     loglevel: LogLevel = 1
     
 
+@lru_cache(maxsize=None)
 def get_settings() -> BaseSettings:
     log.info("Loading config settings from the environment...")
     return Settings()
