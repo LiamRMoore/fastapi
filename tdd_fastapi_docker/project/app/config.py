@@ -3,7 +3,7 @@ import os
 from enum import Enum, IntEnum
 from functools import lru_cache
 
-from pydantic import BaseSettings
+from pydantic import BaseSettings, AnyUrl
 
 
 log = logging.getLogger("uvicorn")
@@ -34,6 +34,7 @@ class Settings(BaseSettings):
     environment: Environment = "dev"
     testing: bool = 0
     loglevel: LogLevel = 1
+    database_url: AnyUrl
     
 
 @lru_cache(maxsize=None)
