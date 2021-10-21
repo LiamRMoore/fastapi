@@ -9,4 +9,6 @@ done
 
 echo "PostgreSQL started"
 
+# anything given as commands to this script (such as appended to the entrypoint cmd via docker's CMD 
+# directive) are executed after the postgres server has been launched
 exec "$@"
