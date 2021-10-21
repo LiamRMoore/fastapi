@@ -22,3 +22,10 @@ RUN pip install -r requirements.txt
 
 # add app from local to workdir of container
 COPY . . 
+
+# add entrypoint.sh
+COPY ./entrypoint.sh .
+RUN chmod +x /usr/src/app/entrypoint.sh
+
+# run entrypoint.sh as the base command when executing the container
+ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
