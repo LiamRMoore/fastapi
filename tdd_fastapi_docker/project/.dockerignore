@@ -1,0 +1,4 @@
+# exclude from being copied to image
+.dockerignore
+Dockerfile
+Dockerfile.prod
