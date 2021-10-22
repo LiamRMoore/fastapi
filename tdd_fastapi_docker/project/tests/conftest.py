@@ -17,7 +17,8 @@ def test_app():
     dependency overrides is a dict where keys are dependencies and values are overrides
     """
     # setup
-    main.app.dependency_overrides[get_settings] = get_settings_override
-    with TestClient(main.app) as test_client:
+    app = main.create_application()
+    app.dependency_overrides[get_settings] = get_settings_override
+    with TestClient(app) as test_client:
         yield test_client
         # teardown
