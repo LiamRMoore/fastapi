@@ -8,7 +8,9 @@ import pytest
 def test_create_summary(test_app_with_db):
     response = test_app_with_db.post("/summaries/", data=json.dumps({"url": "https://foo.bar"}))
     assert response.status_code == 201
-    assert response.json()["url"] == "https://foo.bar"
+    response_dict = response.json()
+    assert response_dict["url"] == "https://foo.bar"
+    assert response_dict["id"]
 
 
 def test_create_summaries_invalid_json(test_app):
@@ -28,7 +30,7 @@ def test_create_summaries_invalid_json(test_app):
 # -- read single summary
 
 def test_read_summary(test_app_with_db):
-    response = test_app_with_db.post("/summaries", data=json.dumps({"url" : "https://foo.bar"}))
+    response = test_app_with_db.post("/summaries/", data=json.dumps({"url" : "https://foo.bar"}))
     summary_id = response.json()["id"]
 
     response = test_app_with_db.get(f"/summaries/{summary_id}")
