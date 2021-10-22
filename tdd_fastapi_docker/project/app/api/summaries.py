@@ -16,3 +16,7 @@ async def create_summary(payload: SummaryPayloadSchema) -> SummaryResponseSchema
         "url" : payload.url
     }
     return response_object
+
+
+#async def read_all_summaries() -> List[SummarySchema]:
+#    summary = await crud.get
