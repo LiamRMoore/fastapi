@@ -11,7 +11,7 @@ register_tortoise(
     app,
     db_url=os.environ.get("DATABASE_URL"),
     modules=dict(models=["app.models.tortoise"]),
-    generate_schemas=True,
+    generate_schemas=False, # aerich will do this
     add_exception_handlers=True
 )
 
