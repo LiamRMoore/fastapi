@@ -1,5 +1,4 @@
 import logging
-import os
 from enum import Enum, IntEnum
 from functools import lru_cache
 
@@ -35,7 +34,7 @@ class Settings(BaseSettings):
     testing: bool = 0
     loglevel: LogLevel = 1
     database_url: AnyUrl
-    
+
 
 @lru_cache(maxsize=None)
 def get_settings() -> BaseSettings:
