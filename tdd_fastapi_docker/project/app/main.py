@@ -2,7 +2,7 @@ import logging
 
 from fastapi import FastAPI, Depends
 
-from app.api import summaries, ping
+from app.api import summaries, ping, babou
 from app.db import init_db
 
 
@@ -16,6 +16,11 @@ def create_application() -> FastAPI:
         summaries.router,
         prefix="/summaries",
         tags=["summaries"]
+    )
+    application.include_router(
+        babou.router,
+        prefix="/babou",
+        tags=["babou"]
     )
     return application
 
