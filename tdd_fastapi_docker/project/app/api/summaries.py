@@ -10,12 +10,14 @@ router = APIRouter()
 
 
 @router.post("/", response_model=SummaryResponseSchema, status_code=201)
-async def create_summary(payload: SummaryPayloadSchema) -> SummaryResponseSchema:
+async def create_summary(
+    payload: SummaryPayloadSchema
+) -> SummaryResponseSchema:
     summary_id = await crud.post(payload)
 
     response_object = {
-        "id" : summary_id,
-        "url" : payload.url
+        "id": summary_id,
+        "url": payload.url
     }
     return response_object
 
@@ -30,4 +32,4 @@ async def read_summary(id: int) -> SummarySchema:
 
 @router.get("/", response_model=List[SummarySchema])
 async def read_all_summaries() -> List[SummarySchema]:
-   return await crud.get_all()
+    return await crud.get_all()

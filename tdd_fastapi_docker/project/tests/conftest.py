@@ -15,7 +15,8 @@ def get_settings_override():
 @pytest.fixture(scope="module")
 def test_app():
     """
-    dependency overrides is a dict where keys are dependencies and values are overrides
+    dependency overrides is a dict where keys are dependencies
+    and values are overrides
     """
     # setup
     app = main.create_application()

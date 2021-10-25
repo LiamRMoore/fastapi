@@ -17,7 +17,7 @@ async def get(id: int) -> Optional[dict]:
     summary = await TextSummary.filter(id=id).first().values()
     if summary:
         return summary[0]
-    
+
 
 async def get_all() -> List:
     summaries = await TextSummary.all().values()

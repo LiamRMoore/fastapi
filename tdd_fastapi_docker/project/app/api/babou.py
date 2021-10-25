@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 
 from pydantic import BaseModel
 
@@ -7,6 +7,7 @@ router = APIRouter()
 
 class BabouPayloadSchema(BaseModel):
     message: str
+
 
 class BabouResponseSchema(BaseModel):
     response: str
@@ -19,7 +20,10 @@ async def respond_to_babou(payload: BabouPayloadSchema) -> BabouResponseSchema:
     """
     msg = payload.message
     if not msg:
-        raise HTTPException(status_code=404, detail="Oh noes, no message was found babou!")
+        raise HTTPException(
+            status_code=404,
+            detail="Oh noes, no message was found babou!"
+        )
     return {
         "response": (
             f"Hello babou, I received your message: '{msg}'"
