@@ -3,9 +3,9 @@ name: Continuous Integration and Delivery
 on: [push]
 
 env:
-  IMAGE: docker.pkg.github.com/$(echo $GITHUB_REPOSITORY | tr '[A-Z]' '[a-z]')/summariser
+  IMAGE: docker.pkg.github.com/$(echo $GITHUB_REPOSITORY | tr '[A-Z]' '[a-z]')/summarizer
 
-jobs: 
+jobs:
 
   build:
     name: Build Docker Image
@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: Checkout master
         uses: actions/checkout@v2.3.4
-      - name: Log in to Github Packages
+      - name: Log in to GitHub Packages
         run: echo ${GITHUB_TOKEN} | docker login -u ${GITHUB_ACTOR} --password-stdin docker.pkg.github.com
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -35,12 +35,12 @@ jobs:
     name: Test Docker Image
     runs-on: ubuntu-latest
     needs: build
-    steps: 
+    steps:
       - name: Checkout master
         uses: actions/checkout@v2.3.4
       - name: Log in to GitHub Packages
         run: echo ${GITHUB_TOKEN} | docker login -u ${GITHUB_ACTOR} --password-stdin docker.pkg.github.com
-        env: 
+        env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Pull image
         run: |
@@ -55,20 +55,18 @@ jobs:
       - name: Run container
         run: |
           docker run \
-          -d \
-          --name fastapi-tdd \
-          -e PORT=8765
-          -e ENVIRONMENT=dev \
-          -e DASTABASE_TEST_URL=sqlite://sqlite.db \
-          -p 5003:8765 \
-          "${{ env.IMAGE }}:latest"
+            -d \
+            --name fastapi-tdd \
+            -e PORT=8765 \
+            -e ENVIRONMENT=dev \
+            -e DATABASE_TEST_URL=sqlite://sqlite.db \
+            -p 5003:8765 \
+            ${{ env.IMAGE }}:latest
       - name: Pytest
         run: docker exec fastapi-tdd python -m pytest .
       - name: Flake8
-        run: docker exec fastapi-tdd pythom -m flake8 .
+        run: docker exec fastapi-tdd python -m flake8 .
       - name: Black
         run: docker exec fastapi-tdd python -m black . --check
       - name: isort
         run: docker exec fastapi-tdd python -m isort . --check-only
-
-
