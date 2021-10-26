@@ -2,7 +2,7 @@
 
 ## Overview of structure
 
-![Continuous Integration and Delivery](https://github.com/YOUR_GITHUB_NAMESPACE/fastapi-tdd-docker/workflows/Continuous%20Integration%20and%20Delivery/badge.svg?branch=master)
+![Continuous Integration and Delivery](https://github.com/LiamRMoore/fastapi-tdd-docker/workflows/Continuous%20Integration%20and%20Delivery/badge.svg?branch=master)
 
 This course builds a text summarisation application using FastAPI.
 
