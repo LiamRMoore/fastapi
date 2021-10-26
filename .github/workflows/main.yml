@@ -61,7 +61,7 @@ jobs:
           -e ENVIRONMENT=dev \
           -e DASTABASE_TEST_URL=sqlite://sqlite.db \
           -p 5003:8765 \
-          ${{ env.IMAGE }}:latest
+          "${{ env.IMAGE }}:latest"
       - name: Pytest
         run: docker exec fastapi-tdd python -m pytest .
       - name: Flake8
