@@ -14,9 +14,9 @@ TORTOISE_ORM = {
     "apps": {
         "models": {
             "models": ["app.models.tortoise", "aerich.models"],
-            "default_connection": "default"
+            "default_connection": "default",
         }
-    }
+    },
 }
 
 
@@ -26,7 +26,7 @@ def init_db(app: FastAPI) -> None:
         db_url=os.environ.get("DATABASE_URL"),
         modules=dict(models=["app.models.tortoise"]),
         generate_schemas=False,  # aerich will do this
-        add_exception_handlers=True
+        add_exception_handlers=True,
     )
 
 
@@ -39,8 +39,7 @@ async def generate_schema() -> None:
     log.info("Initializing Tortoise...")
 
     await Tortoise.init(
-        db_url=os.environ.get("DATABASE_URL"),
-        modules={"models": ["models.tortoise"]}
+        db_url=os.environ.get("DATABASE_URL"), modules={"models": ["models.tortoise"]}
     )
     log.info("Generating database schema via Tortoise...")
     await Tortoise.generate_schemas()

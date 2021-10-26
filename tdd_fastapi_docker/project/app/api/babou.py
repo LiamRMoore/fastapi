@@ -21,8 +21,7 @@ async def respond_to_babou(payload: BabouPayloadSchema) -> BabouResponseSchema:
     msg = payload.message
     if not msg:
         raise HTTPException(
-            status_code=404,
-            detail="Oh noes, no message was found babou!"
+            status_code=404, detail="Oh noes, no message was found babou!"
         )
     return {
         "response": (

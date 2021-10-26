@@ -30,6 +30,7 @@ class Settings(BaseSettings):
 
     https://pydantic-docs.helpmanual.io/usage/settings/
     """
+
     environment: Environment = "dev"
     testing: bool = 0
     loglevel: LogLevel = 1

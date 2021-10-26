@@ -35,7 +35,7 @@ def test_app_with_db():
         db_url=os.environ.get("DATABASE_TEST_URL"),
         modules=dict(models=["app.models.tortoise"]),
         generate_schemas=True,
-        add_exception_handlers=True
+        add_exception_handlers=True,
     )
     with TestClient(app) as test_client:
         yield test_client
