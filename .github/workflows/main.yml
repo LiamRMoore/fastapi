@@ -97,13 +97,13 @@ jobs:
       - name: Log in to the heroku container Registry
         run: docker login -u _ -p ${HEROKU_AUTH_TOKEN} registry.heroku.com
         env:
-          HEROKU_AUTH_TOKEN: ${{ secrets.HEROKU_AUTH_TOKEN }}
+          HEROKU_AUTH_TOKEN: ${{ secrets.HEROKU_AUTH_TOKEN_82D69AA9_A5AF_44D2_91B8_B45B1AA6F91E }}
       - name: Push to the registry
         run: docker push ${{ env.HEROKU_REGISTRY_IMAGE }}
       - name: Set environment variables
         run: |
           echo "HEROKU_REGISTRY_IMAGE=${{ env.HEROKU_REGISTRY_IMAGE }}" >> $GITHUB_ENV
-          echo "HEROKU_AUTH_TOKEN=${{ secrets.HEROKU_AUTH_TOKEN }}" >> $GITHUB_ENV
+          echo "HEROKU_AUTH_TOKEN=${{ secrets.HEROKU_AUTH_TOKEN_82D69AA9_A5AF_44D2_91B8_B45B1AA6F91E }}" >> $GITHUB_ENV
       - name: Release
         run: |
           chmod +x ./tdd_fastapi_docker/release.sh
