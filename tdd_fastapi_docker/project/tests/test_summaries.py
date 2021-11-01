@@ -62,7 +62,6 @@ def test_read_summary_invalid_id(test_app_with_db):
                 "msg": "ensure this value is greater than 0",
                 "type": "value_error.number.not_gt",
                 "ctx": {"limit_value": 0},
-
             }
         ]
     }
